@@ -1,8 +1,8 @@
 import os
 import requests
-from functools import lru_cache
+from cachetools import cached, TTLCache
 
-@lru_cache(maxsize=20)
+@cached(cache=TTLCache(maxsize=20, ttl=10800))
 def getWarStatistic():
     apiUrl = os.getenv("APIURL")
     

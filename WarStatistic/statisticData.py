@@ -2,6 +2,9 @@ from Requests.uaDataRequest import getWarStatistic
 
 async def statistic(bot, message, year, month, day):
     
+    #Create temporaryMessage to user information
+    temporaryMessage = await bot.send_message(message.message.chat.id, "🔎 Пошук статистичних даних...")
+    
     #Date formatting
     if len(str(month)) == 1:
         month = "0"+str(month)
@@ -21,6 +24,9 @@ async def statistic(bot, message, year, month, day):
             text += "<b>невідомо</b>\n"
             continue
         text += "<b>" + str(filter_val[0]['val']) + "</b>\n"
+                
+    #Deleting temporaryMessage
+    await bot.delete_message(message.message.chat.id, temporaryMessage.id)
                 
     #Sending statistical data by Telegram bot
     return await bot.send_message(message.message.chat.id, text, parse_mode="HTML")

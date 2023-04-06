@@ -10,18 +10,19 @@ async def handle_callback(query, bot):
     if data[0] == "ChangeMonth": 
         year = data[1]
         month = data[2]
-        await changeMonth(bot, query, year, month)
+        return await changeMonth(bot, query, year, month)
         
     #Call the year change function
     if data[0] == "ChangeYear":
         year = data[1]
         month = data[2]
-        await changeYear(bot, query, year, month)
+        return await changeYear(bot, query, year, month)
     
     #Completing the date change, displaying the new Telegram bot calendar
     if data[0] == "EndChangeDate":
-        await getDate(bot, query.message.chat.id, int(data[1]), int(data[2]))
+        await bot.delete_message(query.message.chat.id, query.message.id)
+        return await getDate(bot, query.message.chat.id, int(data[1]), int(data[2]))
     
     #Calling the statistics display function
     if data[0] == "ShowStatistic":
-        await statistic(bot, query, data[1], data[2], data[3])
+        return await statistic(bot, query, data[1], data[2], data[3])

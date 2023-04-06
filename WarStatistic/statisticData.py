@@ -1,4 +1,5 @@
 from Requests.uaDataRequest import getWarStatistic
+from MyCalendar.getDate import getDate
 
 async def statistic(bot, message, year, month, day):
     
@@ -27,6 +28,12 @@ async def statistic(bot, message, year, month, day):
                 
     #Deleting temporaryMessage
     await bot.delete_message(message.message.chat.id, temporaryMessage.id)
-                
+    
+    #Deleting calendar
+    await bot.delete_message(message.message.chat.id, message.message.id)
+    
     #Sending statistical data by Telegram bot
-    return await bot.send_message(message.message.chat.id, text, parse_mode="HTML")
+    await bot.send_message(message.message.chat.id, text, parse_mode="HTML")
+
+    #Display calendar below statistic information
+    return await getDate(bot, message.message.chat.id, int(year), int(month))    

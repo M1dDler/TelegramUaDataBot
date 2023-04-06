@@ -9,7 +9,7 @@ async def changeMonth(bot, query, year, month):
     markup = types.InlineKeyboardMarkup(row_width=3)
     
     #Accept current month    
-    continue_btn = types.InlineKeyboardButton("Залишити поточний місяць", callback_data="Next_"+str(year)+"_"+str(month))
+    continue_btn = types.InlineKeyboardButton("Залишити поточний місяць", callback_data="ChangeYear_"+str(year)+"_"+str(month))
     markup.add(continue_btn)
     
     #Display month names for user selection    

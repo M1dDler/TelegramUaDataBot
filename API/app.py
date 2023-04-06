@@ -1,10 +1,10 @@
 from flask import Flask
-from flask import request
 from threading import Thread
 from waitress import serve
 
 app = Flask('')
 
+#API root, to check the activity of the program
 @app.route('/')
 def home():
   return "I'm alive"

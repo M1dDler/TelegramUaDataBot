@@ -31,7 +31,7 @@ async def handle_message(message, bot):
                     
                 #Calling the calendar display function, the commands differ depending on the type of chat    
                 if message.chat.type == "supergroup" or message.chat.type == "group":    
-                    if message.text == '/statistic@n1tron_bot':
+                    if message.text == '/statistic@uadatanet_bot':
                         return await getDate(bot, message.chat.id, year, month)
                 elif message.chat.type == "private":
                     if message.text == '/statistic':
